@@ -11,8 +11,10 @@ export default function SearchBar() {
   const [results, setResults] = useState([])
 
   const handleChange = e => {
-    setValue(e.target.value)
-    const filtered = pokemon.filter(pm => pm.name.includes(e.target.value))
+    setValue(e.target.value.toLowerCase())
+    const filtered = pokemon.filter(pm =>
+      pm.name.includes(e.target.value.toLowerCase())
+    )
     setResults(filtered)
   }
 
