@@ -27,6 +27,8 @@ export default function PokemonList({ pokemon, images }) {
                   alt={mon.name}
                   layout="fill"
                   objectFit="contain"
+                  placeholder="blur"
+                  blurDataURL={image}
                 />
               </figure>
               <h2 className="text-center text-xl">{mon.name}</h2>
