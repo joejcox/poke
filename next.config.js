@@ -1,6 +1,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['pokeapi.co', 'raw.githubusercontent.com'],
+    domains: ['pokeapi.co', 'raw.githubusercontent.com', 'pngset.com'],
   },
 }
