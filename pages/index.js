@@ -1,11 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-// import { useEffect } from 'react'
 
-export default function Home() {
-  const router = useRouter()
-
+export default function Home({ pokemon }) {
   return (
     <main role="main" className="py-16">
       <Head>
@@ -49,12 +45,11 @@ export default function Home() {
 // }
 
 // export async function getStaticProps() {
-//   let response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=20')
+//   let response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=1126')
 
 //   return {
 //     props: {
 //       pokemon: response.data.results,
-//       count: response.data.count,
 //     },
 //   }
 // }

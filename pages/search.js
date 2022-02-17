@@ -14,23 +14,3 @@ export default function Search({ query }) {
     </main>
   )
 }
-
-// export async function getServerSideProps({ query }) {
-//   if (!query) {
-//     return {
-//       props: {
-//         query: null,
-//         results: [],
-//       },
-//     }
-//   }
-
-//   let error = null
-
-//   return {
-//     props: {
-//       query: query.query,
-//       error,
-//     },
-//   }
-// }
