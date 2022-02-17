@@ -85,7 +85,11 @@ export async function getStaticProps({ params }) {
   for (let i = 0; i < response.data.results.length; i++) {
     const pokemon = response.data.results[i]
     const mon = await axios.get(pokemon.url)
-    images.push(mon.data.sprites.front_default)
+    let image = mon.data.sprites.front_default
+    if (!image) {
+      image = mon.data.sprites.other['official-artwork'].front_default
+    }
+    images.push(image)
   }
 
   return {
@@ -98,19 +102,3 @@ export async function getStaticProps({ params }) {
     },
   }
 }
-
-// export const getStaticPaths = async () => {
-//     const posts = await // your database query or fetch to remote API
-
-//     // generate the paths
-//     const paths = posts.map(post => ({
-//          params: { id: post.id } // keep in mind if post.id is a number you need to stringify post.id
-//        })
-//     );
-
-//     return {
-//        paths,
-//        fallback: true
-//     }
-
-//   }
