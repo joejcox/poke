@@ -12,7 +12,7 @@ export default function SearchBar() {
 
   const handleChange = e => {
     setValue(e.target.value)
-    const filtered = pokemon.filter(pm => pm.name.includes(value))
+    const filtered = pokemon.filter(pm => pm.name.includes(e.target.value))
     setResults(filtered)
   }
 
