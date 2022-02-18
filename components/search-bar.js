@@ -11,9 +11,9 @@ export default function SearchBar() {
   const [results, setResults] = useState([])
 
   const handleChange = e => {
-    setValue(e.target.value.toLowerCase())
+    setValue(e.target.value)
     const filtered = pokemon.filter(pm =>
-      pm.name.includes(e.target.value.toLowerCase())
+      pm.name.includes(e.target.value.toLowerCase().replace(' ', '-'))
     )
     setResults(filtered)
   }
@@ -42,7 +42,7 @@ export default function SearchBar() {
         placeholder="Search Pokemon"
         required
       />
-      {results.length > 0 && value !== '' && (
+      {results.length > 0 && value.trim().match('^[A-Za-z0-9]+$') && (
         <div className="absolute top-full left-0 max-h-[500px] w-full overflow-y-scroll rounded-lg bg-white shadow">
           {results.map(item => (
             <div className="px-6" key={item.name}>
@@ -51,7 +51,7 @@ export default function SearchBar() {
                 type="button"
                 className="block w-full py-3 px-2 text-left text-sm capitalize text-gray-600 outline-none hover:bg-gray-100"
               >
-                {item.name}
+                {item.name.replace('-', ' ')}
               </button>
 
               <span className="block h-[1px] border-b border-gray-200"></span>

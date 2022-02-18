@@ -13,15 +13,19 @@ export default function Pokemon({ result }) {
         <Container>
           <div className="flex items-end justify-between">
             <h1 className=" pb-4 text-8xl capitalize text-gray-600">
-              {result.name}
+              {result.name.replace('-', ' ')}
             </h1>
 
             <figure className="relative h-[100px] w-[100px]">
               <Image
-                src={result.sprites.front_default}
+                src={
+                  result.sprites.front_default ||
+                  result.sprites.other['official-artwork'].default ||
+                  'https://pngset.com/images/pokemon-question-mark-sprite-cross-symbol-pac-man-tree-transparent-png-813958.png'
+                }
                 alt={result.name}
                 layout="fill"
-                objectFit="cover"
+                objectFit="contain"
               />
             </figure>
           </div>
@@ -38,7 +42,9 @@ export async function getStaticPaths() {
   )
 
   const paths = [
-    ...response.data.results.map(data => ({ params: { name: data.name } })),
+    ...response.data.results.map(data => ({
+      params: { name: data.name },
+    })),
   ]
 
   return {
