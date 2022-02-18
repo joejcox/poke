@@ -32,7 +32,22 @@ export default function Pokemon({ result }) {
   )
 }
 
-export async function getServerSideProps({ params }) {
+export async function getStaticPaths() {
+  const response = await axios.get(
+    'https://pokeapi.co/api/v2/pokemon?limit=1126'
+  )
+
+  const paths = [
+    ...response.data.results.map(data => ({ params: { name: data.name } })),
+  ]
+
+  return {
+    paths,
+    fallback: false,
+  }
+}
+
+export async function getStaticProps({ params }) {
   const result = await axios
     .get(`https://pokeapi.co/api/v2/pokemon/${params.name}`)
     .then(res => res.data)
