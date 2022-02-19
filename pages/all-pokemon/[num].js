@@ -32,7 +32,6 @@ export default function Page({ page, pages, count, pokemon, images, types }) {
           name="description"
           content={`View pokemon starting from ${numberFromTo}`}
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <section className="border-y border-gray-200 bg-gray-100 py-8">

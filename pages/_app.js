@@ -10,9 +10,6 @@ import '../styles/globals.css'
 function MyApp({ Component, pageProps }) {
   return (
     <PokemonContextProvider>
-      <Head>
-        <link rel="icon" href="/images/pokeball.png" />
-      </Head>
       <Header />
       <Component {...pageProps} />
     </PokemonContextProvider>
