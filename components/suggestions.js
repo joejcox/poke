@@ -12,11 +12,6 @@ export default function Suggestions({ result }) {
   const name = router.asPath.replace('/pokemon/', '')
 
   useEffect(() => {
-    if (result) {
-      setLoading(false)
-      return false
-    }
-
     const getPokemonMatchesToIncorrectQuery = async () => {
       const mon = await axios.get(
         'https://pokeapi.co/api/v2/pokemon?limit=1126'
@@ -30,7 +25,7 @@ export default function Suggestions({ result }) {
     }
 
     getPokemonMatchesToIncorrectQuery()
-  }, [result, name])
+  }, [name])
 
   if (loading) {
     return <Loading />

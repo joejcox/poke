@@ -5,7 +5,7 @@ import Suggestions from '../../components/suggestions'
 
 export default function Pokemon({ result }) {
   if (!result || result.error) {
-    return <Suggestions result={result} />
+    return <Suggestions />
   }
 
   return (
@@ -19,11 +19,7 @@ export default function Pokemon({ result }) {
 
             <figure className="relative h-[100px] w-[100px]">
               <Image
-                src={
-                  result.sprites.front_default ||
-                  result.sprites.other['official-artwork'].default ||
-                  require('../../images/missingno.png')
-                }
+                src={result.image || require('../../images/missingno.png')}
                 alt={result.name}
                 layout="fill"
                 objectFit="contain"
@@ -59,7 +55,12 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const result = await axios
     .get(`https://pokeapi.co/api/v2/pokemon/${params.name}`)
-    .then(res => res.data)
+    .then(({ data }) => ({
+      image:
+        data.sprites.front_default ||
+        data.sprites.other['official-artwork'].default,
+      name: data.name,
+    }))
     .catch(error => {
       return { error: error.message }
     })
