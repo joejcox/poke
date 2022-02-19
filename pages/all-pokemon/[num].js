@@ -1,6 +1,5 @@
 import axios from 'axios'
 import Head from 'next/head'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Container from '../../components/container'
 import PokemonList from '../../components/pokemon-list'
@@ -9,6 +8,8 @@ export default function Page({ page, pages, count, pokemon, images }) {
   const router = useRouter()
   const currentNumberFrom = Math.round((count / pages) * page - 20)
   const currentNumberTo = Math.round((count / pages) * page)
+
+  const numberFromTo = `${currentNumberFrom + 1} - ${currentNumberTo}`
 
   const goToPrevPage = () => {
     if (page < 2) return false
@@ -21,12 +22,14 @@ export default function Page({ page, pages, count, pokemon, images }) {
   }
 
   return (
-    <div>
+    <main role="main">
       <Head>
-        <title>Page {page} - All Pokemon | Poke</title>
+        <title>
+          {numberFromTo} | All Pokémon, Page {page} - Pokéworld
+        </title>
         <meta
           name="description"
-          content={`View pokemon starting from ${currentNumberFrom} to ${currentNumberTo}`}
+          content={`View pokemon starting from ${numberFromTo}`}
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -41,8 +44,8 @@ export default function Page({ page, pages, count, pokemon, images }) {
             >
               Prev
             </button>
-            <div className="flex h-full w-full items-center justify-center bg-black">
-              {currentNumberFrom} - {currentNumberTo} of {count}
+            <div className="flex h-full w-full items-center justify-center bg-black font-normal">
+              {numberFromTo} / {count}
             </div>
             <button
               className="flex h-full items-center border-none bg-yellow-400 px-6 font-bold outline-none hover:bg-yellow-500"
@@ -55,7 +58,7 @@ export default function Page({ page, pages, count, pokemon, images }) {
           <PokemonList pokemon={pokemon} images={images} />
         </Container>
       </section>
-    </div>
+    </main>
   )
 }
 

@@ -22,12 +22,7 @@ export default function Home() {
         <link rel="icon" href="/images/pokeball.png" />
       </Head>
       <div className="flex h-full items-center justify-center">
-        {/* <Link href="/page/1">
-          <a className="rounded-full bg-sky-500 py-4 px-16 text-center text-white hover:bg-sky-600">
-            View All Pokémon
-          </a>
-        </Link> */}
-        <Loading />
+        <Loading start />
       </div>
     </main>
   )
