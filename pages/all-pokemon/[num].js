@@ -3,8 +3,9 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Container from '../../components/container'
 import PokemonList from '../../components/pokemon-list'
+import SearchFilters from '../../components/search-filters'
 
-export default function Page({ page, pages, count, pokemon, images }) {
+export default function Page({ page, pages, count, pokemon, images, types }) {
   const router = useRouter()
   const currentNumberFrom = Math.round((count / pages) * page - 20)
   const currentNumberTo = Math.round((count / pages) * page)
@@ -36,6 +37,7 @@ export default function Page({ page, pages, count, pokemon, images }) {
 
       <section className="border-y border-gray-200 bg-gray-100 py-8">
         <Container>
+          <SearchFilters types={types} />
           <div className="relative mx-4 mb-4 flex h-10 items-center justify-between font-bold text-white">
             <button
               className="flex h-full items-center border-none bg-yellow-400 px-6 font-bold outline-none hover:bg-yellow-500"
@@ -82,9 +84,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const response = await axios.get(
+  const r = axios.get(
     `https://pokeapi.co/api/v2/pokemon?offset=${20 * (params.num - 1)}&limit=20`
   )
+  const t = axios.get('https://pokeapi.co/api/v2/type')
+  const [response, types] = await Promise.all([r, t])
 
   const images = []
 
@@ -105,6 +109,7 @@ export async function getStaticProps({ params }) {
       pages: Math.round(response.data.count / 20),
       count: response.data.count,
       page: Number(params.num),
+      types: types.data.results.filter(type => type.name !== 'unknown'),
     },
   }
 }
