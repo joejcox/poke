@@ -27,6 +27,8 @@ export default function Pokemon({ result }) {
                 alt={result.name}
                 layout="fill"
                 objectFit="contain"
+                placeholder="blur"
+                blurDataURL="https://pngset.com/images/pokemon-question-mark-sprite-cross-symbol-pac-man-tree-transparent-png-813958.png"
               />
             </figure>
           </div>
