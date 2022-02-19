@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Container from './container'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import Loading from './loading'
 
 export default function Suggestions({ result }) {
   const router = useRouter()
@@ -32,7 +33,7 @@ export default function Suggestions({ result }) {
   }, [result, name])
 
   if (loading) {
-    return 'Loading...'
+    return <Loading />
   }
 
   const suggest = (

@@ -22,13 +22,13 @@ export default function Pokemon({ result }) {
                 src={
                   result.sprites.front_default ||
                   result.sprites.other['official-artwork'].default ||
-                  'https://pngset.com/images/pokemon-question-mark-sprite-cross-symbol-pac-man-tree-transparent-png-813958.png'
+                  require('../../images/missingno.png')
                 }
                 alt={result.name}
                 layout="fill"
                 objectFit="contain"
                 placeholder="blur"
-                blurDataURL="https://pngset.com/images/pokemon-question-mark-sprite-cross-symbol-pac-man-tree-transparent-png-813958.png"
+                blurDataURL={require('../../images/missingno.png')}
               />
             </figure>
           </div>
