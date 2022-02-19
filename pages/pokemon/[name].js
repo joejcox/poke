@@ -19,12 +19,12 @@ export default function Pokemon({ result }) {
 
             <figure className="relative h-[100px] w-[100px]">
               <Image
-                src={result.image || require('../../images/missingno.png')}
+                src={result.image}
                 alt={result.name}
                 layout="fill"
                 objectFit="contain"
                 placeholder="blur"
-                blurDataURL={require('../../images/missingno.png')}
+                blurDataURL={'/images/missingno.png'}
               />
             </figure>
           </div>
@@ -58,7 +58,8 @@ export async function getStaticProps({ params }) {
     .then(({ data }) => ({
       image:
         data.sprites.front_default ||
-        data.sprites.other['official-artwork'].default,
+        data.sprites.other['official-artwork'].default ||
+        '/images/missingno.png',
       name: data.name,
     }))
     .catch(error => {
