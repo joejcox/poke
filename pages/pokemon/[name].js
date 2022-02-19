@@ -1,12 +1,13 @@
 import axios from 'axios'
 import Image from 'next/image'
 import Container from '../../components/container'
-import ErrorMessage from '../../components/error-message'
+import Suggestions from '../../components/suggestions'
 
 export default function Pokemon({ result }) {
-  if (result.error) {
-    return <ErrorMessage message={result.error} />
+  if (!result || result.error) {
+    return <Suggestions result={result} />
   }
+
   return (
     <main role="main">
       <section className="py-8">
@@ -49,7 +50,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   }
 }
 
@@ -64,6 +65,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       result,
+      name: params.name,
     },
   }
 }
