@@ -43,7 +43,8 @@ export default function SearchBar() {
   const handleSubmit = e => {
     if (!value) return false
     e.preventDefault()
-    window.location.href = `/pokemon/${value.toLowerCase()}`
+    // window.location.href = `/pokemon/${value.toLowerCase()}`
+    router.push(`/pokemon/${value.toLowerCase()}`)
   }
 
   const handleClick = name => {

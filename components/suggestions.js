@@ -17,11 +17,13 @@ export default function Suggestions({ result }) {
         'https://pokeapi.co/api/v2/pokemon?limit=1126'
       )
 
-      const matches = mon.data.results.filter(
+      const matches = await mon.data.results.filter(
         items => items.name.includes(name) && items.name
       )
       setPokemon(matches)
-      setLoading(false)
+      setTimeout(function () {
+        setLoading(false)
+      }, 600)
     }
 
     getPokemonMatchesToIncorrectQuery()
@@ -51,7 +53,7 @@ export default function Suggestions({ result }) {
     <section className="py-16">
       <Container>
         <h1 className="mb-8 text-5xl leading-tight text-gray-600">
-          No pokemon matches for <span className="text-yellow-300">{name}</span>
+          No Pokémon matches for <span className="text-yellow-300">{name}</span>
         </h1>
         {pokemon.length > 0 && suggest}
       </Container>

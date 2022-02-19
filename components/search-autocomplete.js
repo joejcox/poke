@@ -5,11 +5,13 @@ export default function SearchAutoComplete({
   handleClick,
 }) {
   const classes =
-    formIsFocused && value ? 'opacity-1 transform' : 'translate-y-3 opacity-0'
+    formIsFocused && value
+      ? 'translate-y-0 opacity-1'
+      : 'translate-y-3 opacity-0'
 
   return (
     <div
-      className={`${classes} absolute top-full left-0 z-50 max-h-[500px] w-full overflow-y-scroll rounded-lg bg-white shadow transition-all duration-200`}
+      className={`${classes} absolute top-full left-0 z-50 max-h-[500px] w-full translate-y-3 overflow-y-scroll rounded-lg bg-white shadow transition-all duration-200`}
     >
       {results.map(item => (
         <div className="px-6 hover:bg-gray-100" key={item.name}>
