@@ -12,19 +12,22 @@ export default function Page({ page, pages, count, pokemon, images }) {
 
   const goToPrevPage = () => {
     if (page < 2) return false
-    router.push(`/page/${page - 1}`)
+    router.push(`/all-pokemon/${page - 1}`)
   }
 
   const goToNextPage = () => {
     if (page >= pages) return false
-    router.push(`/page/${page + 1}`)
+    router.push(`/all-pokemon/${page + 1}`)
   }
 
   return (
     <div>
       <Head>
-        <title>Poke</title>
-        <meta name="description" content="Poke API Stuff" />
+        <title>Page {page} - All Pokemon | Poke</title>
+        <meta
+          name="description"
+          content={`View pokemon starting from ${currentNumberFrom} to ${currentNumberTo}`}
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

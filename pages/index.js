@@ -1,55 +1,34 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import Loading from '../components/loading'
 
-export default function Home({ pokemon }) {
+export default function Home() {
+  const router = useRouter()
+
+  useEffect(() => {
+    router.push('/all-pokemon/1')
+  }, [router])
+
   return (
     <main role="main" className="py-16">
       <Head>
-        <title>Poke</title>
-        <meta name="description" content="Poke API Stuff" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>Pokéworld | Find information about your favourite pokemon</title>
+        <meta
+          name="description"
+          content="Are you looking for information about your favourite Pokemon? Take a look around and see if you have caught them all! You can find in depth Pokemon statistics right here at Pokéworld"
+        />
+        <link rel="icon" href="/images/pokeball.png" />
       </Head>
       <div className="flex h-full items-center justify-center">
-        <Link href="/page/1">
+        {/* <Link href="/page/1">
           <a className="rounded-full bg-sky-500 py-4 px-16 text-center text-white hover:bg-sky-600">
-            Go To Poke List
+            View All Pokémon
           </a>
-        </Link>
+        </Link> */}
+        <Loading />
       </div>
     </main>
   )
 }
-
-// import axios from 'axios'
-// import Head from 'next/head'
-// import Container from '../components/container'
-// import PokemonList from '../components/pokemon-list'
-// import SearchBar from '../components/search-bar'
-
-// export default function Home({ pokemon, count }) {
-//   return (
-//     <div>
-//       <Head>
-//         <title>Poke</title>
-//         <meta name="description" content="Poke API Stuff" />
-//         <link rel="icon" href="/favicon.ico" />
-//       </Head>
-
-//       <section className="border-y border-gray-200 bg-gray-100 py-8">
-//         <Container>
-//           <PokemonList pokemon={pokemon} />
-//         </Container>
-//       </section>
-//     </div>
-//   )
-// }
-
-// export async function getStaticProps() {
-//   let response = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=1126')
-
-//   return {
-//     props: {
-//       pokemon: response.data.results,
-//     },
-//   }
-// }

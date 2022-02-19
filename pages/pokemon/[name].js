@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Head from 'next/head'
 import Image from 'next/image'
 import Container from '../../components/container'
 import Suggestions from '../../components/suggestions'
@@ -8,8 +9,19 @@ export default function Pokemon({ result }) {
     return <Suggestions />
   }
 
+  const capitaliseName = name =>
+    name.substring(1, -1).toUpperCase() + name.substring(1)
+
   return (
     <main role="main">
+      <Head>
+        <title>{capitaliseName(result.name)} | Poke</title>
+
+        <meta
+          name="description"
+          content={`Detailed information about the pokémon ${result.name}. Find all ${result.name} stats right here!`}
+        />
+      </Head>
       <section className="py-8">
         <Container>
           <div className="flex items-end justify-between">
